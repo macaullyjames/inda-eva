@@ -1,5 +1,6 @@
 class AuthController < ApplicationController
   skip_before_action :require_login, only: [:login, :callback, :logout]
+  skip_before_action :require_org, only: [:login, :callback, :logout, :orgs]
 
   def login
     @login_redirect_url = Octokit::Client.new.authorize_url(
@@ -25,8 +26,10 @@ class AuthController < ApplicationController
   end
 
   def org
+    session[:org] = params[:org]
   end
 
   def orgs
+    @orgs = user.remote.orgs.map &:login
   end
 end

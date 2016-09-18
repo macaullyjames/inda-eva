@@ -1,2 +1,13 @@
-<h1>Auth#orgs</h1>
-<p>Find me in app/views/auth/orgs.html.erb</p>
+<h1>Choose an organization to work with</h1>
+
+<ul class="orgs">
+  <% @orgs.each do |org| %>
+    <li>
+      <%= form_tag auth_org_path, method: :put do -%>
+        <%= hidden_field_tag :org, org -%>
+        <%= submit_tag org -%>
+      <%- end -%>
+    </li>
+  <% end %>
+</ul>
+

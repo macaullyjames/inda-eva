@@ -1,3 +1,37 @@
 // Place all the styles related to the Auth controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'base/mixins';
+@import 'base/colors';
+
+body.auth {
+
+  ul.orgs {
+    width: 100%;
+    border-spacing: 0;
+    font-weight: lighter;
+    word-break: break-word;
+    list-style-type: none;
+    padding: 0;
+
+    li input {
+      width: 20em;
+      padding: 1em;
+      margin: 0.1em auto;
+      background: #FFFFFF;
+      border: none;
+      font-size: 100%;
+      color: $text-color;
+
+      &:hover {
+        background: $nav-active-color;
+        color: #FFFFFF;
+        cursor: pointer;
+      }
+    }
+
+    a {
+      text-decoration: none
+    }
+  }
+}
