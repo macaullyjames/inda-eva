@@ -22,3 +22,6 @@
 
 # Ignore bin directory.
 /bin
+
+# Ignore swap files.
+*.swp
