@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   def user
     if token = session[:oauth_token]
       @user ||= OpenStruct.new(
+        username: session[:username],
         token: token,
         remote: Octokit::Client.new(access_token: token)
       )

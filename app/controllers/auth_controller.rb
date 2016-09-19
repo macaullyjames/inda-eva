@@ -16,6 +16,7 @@ class AuthController < ApplicationController
       client_id,
       client_secret
     ).access_token
+    session[:username] = Octokit::Client.new(access_token: token).user.login
     session[:oauth_token] = token
     redirect_to auth_orgs_url
   end

@@ -8,10 +8,7 @@
 <main>
   <% if @repos.present? %>
     <p><%= @repos.count %> matches found.</p>
-    <%= form_tag auth_org_path, method: :put do -%>
-      <%= hidden_field_tag :query, @query -%>
-      <%= submit_tag "Run checks" -%>
-    <%- end -%>
+    <input type="submit" id="check-button" value="Run checks">
 
     <table class="repos">
       <tr>
@@ -19,11 +16,15 @@
         <th>IsValidJava</th>
       </tr>
       <% @repos.each do |repo| %>
-        <tr>
-          <td><%= repo.name %></td>
-          <td>
+        <tr class="<%= repo.name %>">
+          <td class="name" data-repo="<%= repo.name %>">
+            <a href="<%= "https://gits-15.sys.kth.se/#{@org}/#{repo.name}" %>">
+              <%= repo.name %>
+            </a>
+          </td>
+          <td class="isValidJava">
             <% if repo.checks.exists?(name: :isValidJava) %>
-              <%= repo.checks.find_by(name: :isValidJava).status =%>
+              <%= repo.checks.find_by(name: :isValidJava).status.capitalize =%>
             <% else %>
               -
             <% end %>
