@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $("#hide_passed").on "change", (e) ->
+    $(@).closest("form").submit()
+
   $("#check-button").on "click", (e) ->
     repos = $(".repos tr:not(:first-child) .name").map -> $(@).data("repo")
     checkRepos(repos.get().reverse())

@@ -5,6 +5,10 @@
 @import 'base/colors';
 
 body.checks {
+  #query {
+    display: block;
+    margin: 0 auto;
+  }
 
   table.repos {
     width: 100%;
@@ -15,24 +19,11 @@ body.checks {
     tr:nth-child(odd) {
       background: $odd-row-color;
     }
-    tr:nth-child(odd) {
-      background: $odd-row-color;
-    }
 
-    td {
+    td, th {
+      text-align: left;
       padding: 0.5em;
       border: none;
-      
-      &:first-of-type {
-
-        div {
-          height: 1em;
-          width: 1em;
-          line-height: 1em;
-          font-size: 1em;
-          margin: 0 auto;
-        }
-      }
     }
 
     input {

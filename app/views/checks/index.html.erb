@@ -2,6 +2,8 @@
 
 <%= form_tag checks_index_path, method: :get do =%>
   <%= text_field_tag 'query', @query =%>
+  <%= check_box_tag 'hide_passed', true, @hide_passed %>
+  <span>Don't show repos that pass all checks</span>
 <% end %>
 <p>Filter using SQL-like wildcards, e.g. "%-week-1"</p>
 

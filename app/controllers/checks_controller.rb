@@ -3,8 +3,12 @@ class ChecksController < ApplicationController
     @org = org
     @repos = Repo.where(org: org)
     @query = params[:query]
+    @hide_passed = params[:hide_passed]
     if @query.present?
       @repos = @repos.where("name like ?", "#{@query}")
+    end
+    if @hide_passed
+      @repos = @repos.select { |r| r.checks.where.not(status: "passed").any? }
     end
   end
 
