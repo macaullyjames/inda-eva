@@ -26,7 +26,13 @@ class AuthController < ApplicationController
   end
 
   def org
-    session[:org] = params[:org]
+    org = session[:org] = params[:org]
+    if Repo.where(org: org).empty?
+      user.remote.org_repos(org).each do |r|
+        Repo.where(org: org, name: r.name).first_or_create
+      end
+    end
+    redirect_to checks_index_url
   end
 
   def orgs

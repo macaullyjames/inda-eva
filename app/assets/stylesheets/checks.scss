@@ -1,0 +1,50 @@
+// Place all the styles related to the checks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'base/mixins';
+@import 'base/colors';
+
+body.checks {
+
+  table.repos {
+    width: 100%;
+    border-spacing: 0;
+    font-weight: lighter;
+    word-break: break-word;
+
+    tr:nth-child(odd) {
+      background: $odd-row-color;
+    }
+    tr:nth-child(odd) {
+      background: $odd-row-color;
+    }
+
+    td {
+      padding: 0.5em;
+      border: none;
+      
+      &:first-of-type {
+
+        div {
+          height: 1em;
+          width: 1em;
+          line-height: 1em;
+          font-size: 1em;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    input {
+      margin: 0;
+    }
+
+    .fa-spin {
+      margin-left: -0.2em;
+    }
+
+    a {
+      text-decoration: none
+    }
+  }
+}

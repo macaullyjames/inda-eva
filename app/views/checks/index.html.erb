@@ -1,0 +1,37 @@
+<h1>eva·bot</h1>
+
+<%= form_tag checks_index_path, method: :get do =%>
+  <%= text_field_tag 'query', @query =%>
+<% end %>
+<p>Filter using SQL-like wildcards, e.g. "%-week-1"</p>
+
+<main>
+  <% if @repos.present? %>
+    <p><%= @repos.count %> matches found.</p>
+    <%= form_tag auth_org_path, method: :put do -%>
+      <%= hidden_field_tag :query, @query -%>
+      <%= submit_tag "Run checks" -%>
+    <%- end -%>
+
+    <table class="repos">
+      <tr>
+        <th>Repo</th>
+        <th>IsValidJava</th>
+      </tr>
+      <% @repos.each do |repo| %>
+        <tr>
+          <td><%= repo.name %></td>
+          <td>
+            <% if repo.checks.exists?(name: :isValidJava) %>
+              <%= repo.checks.find_by(name: :isValidJava).status =%>
+            <% else %>
+              -
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>No matches found</p>
+  <% end %>
+</main>
