@@ -1,3 +1,5 @@
+require 'open3'
+
 class ChecksController < ApplicationController
   def index
     @org = org
@@ -35,7 +37,9 @@ class ChecksController < ApplicationController
 
     passed = Dir.glob("#{dir}/**/*.java").all? do |file|
       Rails.logger.info "Running check `java io.evabot.IsValidJavaCheck #{file}`"
-      system "java", "io.evabot.IsValidJavaCheck", file
+      Open3.popen3("java", "io.evabot.IsValidJavaCheck") do |stdin, stdout|
+        Rails.logger.info stdout.read.chomp
+      end
     end
 
     status = passed ? "passed" : "failed"
