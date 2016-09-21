@@ -20,8 +20,5 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Ignore bin directory.
-/bin
-
 # Ignore swap files.
 *.swp
